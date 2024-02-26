@@ -7,44 +7,39 @@ import { CartItemContext } from "../App";
 const { Title, Paragraph } = Typography;
 
 const Dashboard = () => {
-  const cartItemAddFunction = useContext(CartItemContext);  
+  const cartItemAddFunction = useContext(CartItemContext);
 
   return (
-    <>
-      <Header />
+    <div className="grid grid-cols-4 mt-10 gap-7 w-[90%] ml-[70px]">
+      {productArray?.map((item, index) => (
+        <div key={index} className="flex flex-col w-[100%]  p-4  shadow-xl justify-between align-center rounded-lg">
+          <Image
+            className="flex justify-center ml-[32px]"
+            width={200}
+            height={200}
+            src={`${item.image}`}
+            preview={false}
+          />
 
-      {/* -------- Products -------- */}
-      <div className="grid grid-cols-4 mt-10 gap-7 w-[90%] ml-[70px]">
-        {productArray.map((item) => (
-          <div className="flex flex-col w-[100%]  p-4  border-zinc-400 border-2 justify-between align-center rounded-lg">
-            <Image
-              className="flex justify-center ml-[32px]"
-              width={200}
-              height={200}
-              src={`${item.image}`}
-              preview={false}
-            />
+          <Paragraph className="text-center text-lg mt-4 h-[33%]">
+            {item.title}
+          </Paragraph>
 
-            <Paragraph className="text-center text-lg mt-4 h-[33%]">
-              {item.title}
-            </Paragraph>
-
-            <Paragraph className="text-xl text-center h-fit !mb-1.5">
+          <Paragraph className="text-xl text-center h-fit !mb-1.5">
             &#8377;{item.price}
-            </Paragraph>
+          </Paragraph>
 
-            <Space>
+          <Space>
             <Button
               className="bg-red-500 text-white font-semibold text-lg p-2 h-auto ml-[76px] w-fit "
               onClick={() => cartItemAddFunction(item)}
             >
-              Add To Cart 
+              Add To Cart
             </Button>
-            </Space>
-          </div>
-        ))}
-      </div>
-    </>
+          </Space>
+        </div>
+      ))}
+    </div>
   );
 };
 
